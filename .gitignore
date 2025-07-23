@@ -1,0 +1,14 @@
+###> root ###
+.junie/
+.junie/*
+###< root ###
+
+###> ms/Book ###
+/ms/Book/var/cache/
+/ms/Book/var/log/
+/ms/Book/.env.local
+/ms/Book/composer.lock
+/ms/Book/symfony.lock
+/ms/Book/var/
+/ms/Book/vendor/
+###< ms/Book ###
