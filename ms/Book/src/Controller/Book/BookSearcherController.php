@@ -11,9 +11,11 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class BookSearcherController extends AbstractController
 {
-	#[Route('/search', name: 'book_search', methods: ['GET'])]
+	#[Route('/books', name: 'book_search', methods: ['GET'])]
 	public function search(BookSearcher $bookSearcher): JsonResponse
 	{
-		return new JsonResponse($bookSearcher->search());
+		return new JsonResponse(
+			$bookSearcher->search()
+		);
 	}
 }

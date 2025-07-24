@@ -22,3 +22,9 @@ services:
 
     App\src\:
         resource: '../../../src/*'
+        
+#    # Explicitly configure the HTTP client service
+#    App\src\Shared\Domain\HttpClient\HttpClientInterface:
+#        class: App\src\Shared\Infrastructure\HttpClient\SymfonyHttpClient
+#        arguments:
+#            $httpClient: '@http_client'

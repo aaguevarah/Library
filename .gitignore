@@ -1,6 +1,7 @@
 ###> root ###
 .junie/
 .junie/*
+.idea/
 ###< root ###
 
 ###> ms/Book ###
