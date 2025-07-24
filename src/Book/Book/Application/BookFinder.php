@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\src\Book\Book\Application;
 
+use App\src\Book\Book\Domain\BookSerializer;
 use App\src\Book\Book\Domain\Exception\BookNotFoundException;
 use App\src\Shared\Domain\HttpClient\HttpClientException;
 use App\src\Shared\Domain\HttpClient\HttpClientInterface;
@@ -30,7 +31,7 @@ final class BookFinder
 				throw BookNotFoundException::withId($id);
 			}
 
-			return $response;
+			return BookSerializer::serialize($response);
 		} catch (HttpClientException|Throwable $e) {
 			$this->logger->critical('Error finding book by ID: ' . $e->getMessage());
 
