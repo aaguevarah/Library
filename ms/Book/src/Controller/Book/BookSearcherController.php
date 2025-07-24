@@ -16,9 +16,10 @@ final class BookSearcherController extends AbstractController
 	public function search(Request $request, BookSearcher $bookSearcher): JsonResponse
 	{
 		$page = max(1, (int) $request->query->get('page', 1));
+		$searchTerm = $request->query->get('search');
 		
 		return new JsonResponse(
-			$bookSearcher->search($page)
+			$bookSearcher->search($page, $searchTerm)
 		);
 	}
 }

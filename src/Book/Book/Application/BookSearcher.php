@@ -20,10 +20,14 @@ final class BookSearcher
 	{
 	}
 
-	public function search(int $page = 1): array
+	public function search(int $page = 1, ?string $searchTerm = null): array
 	{
 		try {
 			$url = sprintf(self::GUTENDEX_API_URL, $page);
+			
+			if ($searchTerm !== null && $searchTerm !== '') {
+				$url .= '&search=' . urlencode($searchTerm);
+			}
 
 			$response = $this->httpClient->get($url);
 
