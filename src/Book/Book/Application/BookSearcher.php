@@ -11,7 +11,7 @@ use Throwable;
 
 final class BookSearcher
 {
-	private const GUTENDEX_API_URL = 'https://gutendex.com/books';
+	private const GUTENDEX_API_URL = 'https://gutendex.com/books?page=%s';
 
 	public function __construct(
 		private readonly HttpClientInterface $httpClient,
@@ -20,25 +20,63 @@ final class BookSearcher
 	{
 	}
 
-	public function search(): array
+	public function search(int $page = 1): array
 	{
 		try {
-			$response = $this->httpClient->get(self::GUTENDEX_API_URL);
+			$url = sprintf(self::GUTENDEX_API_URL, $page);
+
+			$response = $this->httpClient->get($url);
+
+			$nextPage     = $this->nextPage($response);
+			$previousPage = $this->previousPage($response);
+
 			return [
-				'count'    => $response['count'] ?? 0,
-				'next'     => $response['next'] ?? null,
-				'previous' => $response['previous'] ?? null,
-				'results'  => array_map(
+				'count'        => $response['count'],
+				'nextPage'     => $nextPage,
+				'previousPage' => $previousPage,
+				'currentPage'  => $page,
+				'results'      => array_map(
 					static function (array $book): array {
 						return BookSerializer::serialize($book);
 					},
 					$response['results'] ?? []
 				),
 			];
-
 		} catch (Throwable $e) {
 			$this->logger->error($e->getMessage());
-			return ['count' => 0, 'results' => []];
+			return [
+				'count'        => 0,
+				'nextPage'     => 0,
+				'previousPage' => 0,
+				'currentPage'  => 0,
+				'results'      => []
+			];
 		}
+	}
+
+	private function nextPage(array $response): ?int
+	{
+		$nextPage = null;
+
+		if (isset($response['next'])) {
+			$nextUrl = $response['next'];
+			preg_match('/page=(\d+)/', $nextUrl, $matches);
+			$nextPage = isset($matches[1]) ? (int)$matches[1] : null;
+		}
+
+		return $nextPage;
+	}
+
+	private function previousPage(array $response): ?int
+	{
+		$previousPage = null;
+
+		if (isset($response['previous'])) {
+			$previousUrl = $response['previous'];
+			preg_match('/page=(\d+)/', $previousUrl, $matches);
+			$previousPage = isset($matches[1]) ? (int)$matches[1] : null;
+		}
+
+		return $previousPage;
 	}
 }

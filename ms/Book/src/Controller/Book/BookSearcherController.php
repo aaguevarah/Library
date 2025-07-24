@@ -7,15 +7,18 @@ namespace App\Controller\Book;
 use App\src\Book\Book\Application\BookSearcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class BookSearcherController extends AbstractController
 {
 	#[Route('/books', name: 'book_search', methods: ['GET'])]
-	public function search(BookSearcher $bookSearcher): JsonResponse
+	public function search(Request $request, BookSearcher $bookSearcher): JsonResponse
 	{
+		$page = max(1, (int) $request->query->get('page', 1));
+		
 		return new JsonResponse(
-			$bookSearcher->search()
+			$bookSearcher->search($page)
 		);
 	}
 }
