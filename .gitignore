@@ -2,6 +2,7 @@
 .junie/
 .junie/*
 .idea/
+.DS_Store
 ###< root ###
 
 ###> ms/Book ###

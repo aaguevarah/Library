@@ -32,7 +32,7 @@ final class BookFinder
 			}
 
 			return BookSerializer::serialize($response);
-		} catch (HttpClientException|Throwable $e) {
+		} catch (Throwable $e) {
 			$this->logger->critical('Error finding book by ID: ' . $e->getMessage());
 
 			throw BookNotFoundException::withId($id);
