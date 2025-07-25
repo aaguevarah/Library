@@ -11,7 +11,7 @@ use Throwable;
 
 final class BookSearcher
 {
-	private const GUTENDEX_API_URL = 'https://gutendex.com/books?page=%s';
+	private const string GUTENDEX_API_URL = 'https://gutendex.com/books?page=%s';
 
 	public function __construct(
 		private readonly HttpClientInterface $httpClient,

@@ -23,7 +23,20 @@ services:
       - php
     networks:
       - symfony
+      
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - symfony
 
 networks:
   symfony:
     driver: bridge
+    
+volumes:
+  redis_data:

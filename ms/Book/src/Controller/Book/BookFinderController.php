@@ -37,12 +37,7 @@ final class BookFinderController extends AbstractController
                     example: [
                         'Adventure stories',
                         'Ahab, Captain (Fictitious character) -- Fiction',
-                        'Mentally ill -- Fiction',
-                        'Psychological fiction',
                         'Sea stories',
-                        'Ship captains -- Fiction',
-                        'Whales -- Fiction',
-                        'Whaling -- Fiction',
                         'Whaling ships -- Fiction'
                     ]
                 ),

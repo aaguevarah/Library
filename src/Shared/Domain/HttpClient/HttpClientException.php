@@ -35,37 +35,21 @@ class HttpClientException extends Exception
 
 	public static function connectionError(string $message, ?Throwable $previous = null): self
 	{
-		return new self("Connection error: $message",
-						null,
-						null,
-						0,
-						$previous);
+		return new self("Connection error: $message", null, null, 0, $previous);
 	}
 
 	public static function httpError(int $statusCode, ?array $responseData = null, ?Throwable $previous = null): self
 	{
-		return new self("HTTP error: Status code $statusCode",
-						$statusCode,
-						$responseData,
-						0,
-						$previous);
+		return new self("HTTP error: Status code $statusCode", $statusCode, $responseData, 0, $previous);
 	}
 
 	public static function timeoutError(?Throwable $previous = null): self
 	{
-		return new self("Request timed out",
-						null,
-						null,
-						0,
-						$previous);
+		return new self("Request timed out", null, null, 0, $previous);
 	}
 
 	public static function invalidResponse(?array $responseData = null, ?Throwable $previous = null): self
 	{
-		return new self("Invalid response received",
-						null,
-						$responseData,
-						0,
-						$previous);
+		return new self("Invalid response received", null, $responseData, 0, $previous);
 	}
 }
