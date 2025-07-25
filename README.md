@@ -54,33 +54,11 @@ The Library Management System is structured as a set of microservices, with the 
 
 3. Install dependencies for all microservices:
    ```bash
-   docker exec php bash -c "./install-all.sh"
-   ```
-   
-   Alternatively, you can run the script directly if you have bash installed:
-   ```bash
-   ./install-all.sh
+   docker exec php bash -c "sh install-all.sh"
    ```
 
 4. Access the application:
    - Web interface: http://localhost:8080
-
-### Manual Installation (Without Docker)
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd Library
-   ```
-
-2. Install PHP 8.4 and required extensions
-
-3. Install dependencies for all microservices:
-   ```bash
-   ./install-all.sh
-   ```
-
-4. Configure your web server (Nginx or Apache) to point to the `ms/Book/public` directory
 
 ## Project Structure
 
@@ -117,26 +95,12 @@ To run unit tests for the Book microservice:
 docker exec php bash -c "cd ms/Book && php bin/phpunit"
 ```
 
-Or without Docker:
-
-```bash
-cd ms/Book
-php bin/phpunit
-```
-
 ### Behat (Behavior Tests)
 
 To run behavior tests for the Book microservice:
 
 ```bash
 docker exec php bash -c "cd ms/Book && vendor/bin/behat"
-```
-
-Or without Docker:
-
-```bash
-cd ms/Book
-vendor/bin/behat
 ```
 
 ## Services
@@ -161,20 +125,6 @@ When adding new features, please follow the existing architecture and patterns:
 2. Implement use cases in the Application layer
 3. Provide concrete implementations in the Infrastructure layer
 4. Add appropriate tests for all new functionality
-
-## Troubleshooting
-
-### Common Issues
-
-- **Permission Issues**: If you encounter permission issues with Docker volumes, you may need to adjust permissions on the host:
-  ```bash
-  chmod -R 777 var/cache var/log
-  ```
-
-- **Composer Memory Limit**: If Composer runs out of memory during installation, increase the memory limit:
-  ```bash
-  COMPOSER_MEMORY_LIMIT=-1 docker exec php bash -c "cd ms/Book && composer install"
-  ```
 
 ## License
 
