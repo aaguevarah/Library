@@ -1,0 +1,15 @@
+default:
+  suites:
+    default:
+      paths:
+        - '%paths.base%/../../tests/Book/Infrastructure/Behat/Features'
+      contexts:
+        - App\Tests\Book\Infrastructure\Behat\Context\BookContext
+
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      bootstrap: '../../tests/Book/bootstrap.php'
+      kernel:
+        class: App\Kernel
+        path: 'src/Kernel.php'
+        environment: test

@@ -1,0 +1,18 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  # Make the BookContext available as a service
+  App\Tests\Book\Infrastructure\Behat\Context\BookContext:
+    public: true
+    arguments:
+      $kernel: '@kernel'
+      $httpClient: '@App\src\Shared\Domain\HttpClient\HttpClientInterface'
+
+  # Use the real HttpClientInterface implementation for Behat tests
+  App\src\Shared\Domain\HttpClient\HttpClientInterface:
+    class: App\src\Shared\Infrastructure\HttpClient\SymfonyHttpClient
+    arguments:
+      $httpClient: '@Symfony\Contracts\HttpClient\HttpClientInterface'
