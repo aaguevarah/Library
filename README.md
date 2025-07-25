@@ -59,6 +59,7 @@ The Library Management System is structured as a set of microservices, with the 
 
 4. Access the application:
    - Web interface: http://localhost:8080
+   - API Documentation: http://localhost:8080/book/api/doc
 
 ## Project Structure
 
@@ -110,6 +111,16 @@ The application consists of the following services:
 - **PHP (8.4)**: Application server running PHP-FPM
 - **Nginx**: Web server exposing the application on port 8080
 - **Redis**: Cache server for improved performance
+
+## API Documentation
+
+The project uses Nelmio API Doc Bundle to provide interactive API documentation:
+
+- **URL**: http://localhost:8080/book/api/doc
+- **Features**:
+  - Interactive API explorer
+  - Detailed endpoint documentation
+  - Request/response examples
 
 ## Development
 
