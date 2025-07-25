@@ -13,4 +13,5 @@
 /ms/Book/symfony.lock
 /ms/Book/var/
 /ms/Book/vendor/
+/ms/Book/.phpunit.cache/*
 ###< ms/Book ###

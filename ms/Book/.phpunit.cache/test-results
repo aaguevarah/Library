@@ -1,1 +1,0 @@
-{"version":1,"defects":{"App\\Tests\\Book\\Application\\BookFinderTest::testBooFinder":8,"App\\Tests\\Book\\Application\\BookSearcherTest::testBooFinder":8},"times":{"App\\Tests\\Book\\Application\\BookFinderTest::testBooFinder":1.538,"App\\Tests\\Book\\Application\\BookSearcherTest::testBooFinder":0.008,"App\\Tests\\Book\\Application\\BookFinderTest::testBookFinder":0.203}}
